@@ -21,7 +21,12 @@ _ "github.com/jinzhu/gorm/dialects/postgres" <br>
 
 ENV : <br>
 [gotenv]: github.com/subosito/gotenv <br>
+
+Hashing Pass : <br>
 [bcrypt]: https://www.golang.org/x/crypto/bcrypt <br>
+
+JWT : <br>
+[JWT]: github.com/dgrijalva/jwt-go
 ```
 ## ERD & Flowchart
 ![database](https://github.com/yohansky/Be-Blanja/assets/69236028/171a80e2-1192-4079-a6a5-7796e4ee0c09) <br>
