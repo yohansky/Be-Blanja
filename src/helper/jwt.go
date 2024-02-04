@@ -18,7 +18,7 @@ func GenerateToken(secretKey, email string, role string) (string, error) {
 	// Menambahkan klaim email ke token
 	claims["email"] = email
 	// claims["role"] // nanti ditambahkan dan di taruh disini
-	//parsing lewat object
+	//parsing lewat object	
 	claims["role"] = role
 	
 	// Menambahkan waktu kedaluwarsa 1 jam
@@ -34,7 +34,3 @@ func GenerateToken(secretKey, email string, role string) (string, error) {
 	return tokenString, err
 }
 //gimana carnaya login,cara loginnya harus ngedetect 
-
-// func RefreshToken()  {
-	
-// }

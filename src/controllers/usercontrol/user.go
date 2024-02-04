@@ -267,7 +267,11 @@ func Login(w http.ResponseWriter, r *http.Request) {
 			return
 		}
 		//testing validate role
-		// ValidateRole := usermodel.FindRole(&input)
+		// er := json.Unmarshal([]byte(input.Role), &input)
+		// if err != nil {
+        // fmt.Println(er)
+    	// }
+
 
 		ValidateEmail := usermodel.FindEmail(&input)
 		if len(ValidateEmail) == 0 {
@@ -279,7 +283,7 @@ func Login(w http.ResponseWriter, r *http.Request) {
 		for _, user := range ValidateEmail {
 			PasswordSecond = user.Password
 		}
-
+		//Autentikasi (auth)
 		if err := bcrypt.CompareHashAndPassword([]byte(PasswordSecond), []byte(input.Password)); err != nil {
 			w.WriteHeader(http.StatusNotFound)
 			fmt.Fprintf(w, "Password not Found")
