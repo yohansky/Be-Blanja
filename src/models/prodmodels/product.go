@@ -71,5 +71,5 @@ func CountData() int {
 func FindData(name string) *gorm.DB {
 	items := []Product{}
 	name = "%" + name + "%"
-	return config.DB.Where("title LIKE ?", name).Find(&items)
+	return config.DB.Where("name LIKE ?", name).Find(&items)
 }

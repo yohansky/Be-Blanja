@@ -266,6 +266,8 @@ func Login(w http.ResponseWriter, r *http.Request) {
 			fmt.Fprintf(w, "Invalid request body")
 			return
 		}
+		//testing validate role
+		// ValidateRole := usermodel.FindRole(&input)
 
 		ValidateEmail := usermodel.FindEmail(&input)
 		if len(ValidateEmail) == 0 {
@@ -291,8 +293,8 @@ func Login(w http.ResponseWriter, r *http.Request) {
 		}
 		item := map[string]string{
 			"Email": input.Email,
-			"Token": token,
 			"Role": input.Role,
+			"Token": token,
 		}
 		res, err := json.Marshal(item)
 		if err != nil {

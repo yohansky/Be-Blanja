@@ -50,3 +50,9 @@ func FindEmail(input *User) []User {
 	config.DB.Raw("SELECT * FROM users WHERE email = ?", input.Email).Scan(&items)
 	return items
 }
+//testing
+func FindRole(input *User) []User  {
+	items := []User{}
+	config.DB.Raw("SELECT role FROM users WHERE role = ?", input.Role).Scan(&items)
+	return items
+}
