@@ -13,8 +13,8 @@ Section : BackEnd <br>
 [PostgreSQL]: https://www.postgresql.org/ <br>
 </div>
 <h2>ERD & Flowchart</h2>
-![database](https://github.com/yohansky/Be-Blanja/assets/69236028/2072ad2b-1b9f-48dc-9e4d-bc8490bec448) <br>
-![flowchart](https://github.com/yohansky/Be-Blanja/assets/69236028/104f2eb5-535c-4d4a-b1e6-8df0e1e1c841) <br>
+![database](https://github.com/yohansky/Be-Blanja/assets/database.png) <br>
+![flowchart](https://github.com/yohansky/Be-Blanja/assets/flowchart.png) <br>
 
 <h1>Author</h1>
 Yohanes Hubert
