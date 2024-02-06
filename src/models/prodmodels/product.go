@@ -64,7 +64,7 @@ func FindCond(sort string, limit int, offset int) *gorm.DB {
 
 func CountData() int {
 	var result int
-	config.DB.Table("articles").Count(&result)
+	config.DB.Table("products").Count(&result)
 	return result
 }
 

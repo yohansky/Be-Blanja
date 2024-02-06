@@ -13,7 +13,7 @@ type User struct {
 	Password string
 	Phonenumber string
 	Storename string
-	Role string
+	Role string `json:"role"`
 }
 
 func SelectAll() *gorm.DB {
@@ -53,6 +53,6 @@ func FindEmail(input *User) []User {
 //testing
 func FindRole(input *User) []User  {
 	items := []User{}
-	config.DB.Raw("SELECT role FROM users WHERE role = ?", input.Role).Scan(&items)
+	config.DB.Raw("SELECT role FROM users WHERE email = ?", input.Role).Scan(&items)
 	return items
 }

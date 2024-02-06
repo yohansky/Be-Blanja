@@ -13,161 +13,7 @@ import (
 	"golang.org/x/crypto/bcrypt"
 )
 
-// func User(w http.ResponseWriter, r *http.Request) {
-// 	middleware.GetCleanedInput(r)
-// 	helper.EnableCors(w)
-// 	id := r.URL.Path[len("/user/"):]
-// 	if r.Method == "GET" {
-// 		result, err := json.Marshal(usermodel.Select(id).Value)
-// 		if err != nil {
-// 			http.Error(w, "Failed convert to Json", http.StatusInternalServerError)
-// 			return
-// 		}
-// 		w.Write(result)
-// 		return
-// 	} else if r.Method == "PUT" {
-// 		var input usermodel.User
-// 		err := json.NewDecoder(r.Body).Decode(&input)
-// 		if err != nil {
-// 			http.Error(w, "Failed convert to Json", http.StatusInternalServerError)
-// 			return
-// 		}
-// 		newUser := usermodel.User{
-// 			Email: input.Email,
-//     		Password: input.Password,
-// 		}
-// 		usermodel.Updates(id, &newUser)
-// 		msg := map[string]string{
-// 			"Message": "User Updated",
-// 		}
-// 		result, err := json.Marshal(msg)
-// 		if err != nil {
-// 			http.Error(w, "Failed convert to Json", http.StatusInternalServerError)
-// 			return
-// 		}
-// 		w.WriteHeader(http.StatusOK)
-// 		w.Write(result)
-// 	} else if r.Method == "DELETE" {
-// 		usermodel.Deletes(id)
-// 		msg := map[string]string{
-// 			"Message": "User Deleted",
-// 		}
-// 		result, err := json.Marshal(msg)
-// 		if err != nil {
-// 			http.Error(w, "Failed convert to Json", http.StatusInternalServerError)
-// 			return
-// 		}
-// 		w.WriteHeader(http.StatusOK)
-// 		w.Write(result)
-// 	} else {
-// 		http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
-// 	}
-// }
 
-// func Users(w http.ResponseWriter, r *http.Request) {
-// 	middleware.GetCleanedInput(r)
-// 	helper.EnableCors(w)
-// 	if r.Method == "GET" {
-// 		res := usermodel.SelectAll()
-// 		result, err := json.Marshal(res.Value)
-// 		if err != nil {
-// 			http.Error(w, "Failed convert to Json", http.StatusInternalServerError)
-// 			return
-// 		}
-// 		w.Write(result)
-// 		return
-// 	} else if r.Method == "POST" {
-// 		var input usermodel.User
-// 		err := json.NewDecoder(r.Body).Decode(&input)
-// 		if err != nil {
-// 			http.Error(w, err.Error(), http.StatusBadRequest)
-// 			return
-// 		}
-// 		item := usermodel.User{
-// 			Email: input.Email,
-// 			Password: input.Password,
-// 		}
-// 		usermodel.Post(&item)
-// 		w.WriteHeader(http.StatusCreated)
-// 		msg := map[string]string{
-// 			"Message": "User Created",
-// 		}
-// 		result, _ := json.Marshal(msg)
-// 		w.Write(result)
-// 		return
-// 	} else {
-// 		http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
-// 	}
-// }
-
-// func RegisterUser(w http.ResponseWriter, r *http.Request) {
-// 	middleware.GetCleanedInput(r)
-// 	helper.EnableCors(w)
-// 	if r.Method == "POST" {
-// 		var input usermodel.User
-// 		err := json.NewDecoder(r.Body).Decode(&input)
-// 		if err != nil {
-// 			w.WriteHeader(http.StatusBadRequest)
-// 			fmt.Fprintln(w, "invalid request body")
-// 			return
-// 		}
-// 		hashPassword, _ := bcrypt.GenerateFromPassword([]byte(input.Password), bcrypt.DefaultCost)
-// 		Password := string(hashPassword)
-// 		newUser := usermodel.User{
-// 			Email:    input.Email,
-// 			Password: Password,
-// 		}
-// 		usermodel.Post(&newUser)
-// 		w.WriteHeader(http.StatusCreated)
-// 		msg := map[string]string{
-// 			"Message": "User Created",
-// 		}
-// 		result, _ := json.Marshal(msg)
-// 		w.Write(result)
-// 		return
-// 	} else {
-// 		http.Error(w, "", http.StatusBadRequest)
-// 	}
-// }
-
-// func LoginUser(w http.ResponseWriter, r *http.Request) {
-// 	middleware.GetCleanedInput(r)
-// 	helper.EnableCors(w)
-// 	if r.Method == "POST" {
-// 		var input usermodel.User
-// 		err := json.NewDecoder(r.Body).Decode(&input)
-// 		if err != nil {
-// 		}
-// 		ValidateEmail := usermodel.FindEmail(&input)
-// 		if len(ValidateEmail) == 0 {
-// 			w.WriteHeader(http.StatusNotFound)
-// 			fmt.Fprintln(w, "Email is not Found")
-// 			return
-// 		}
-// 		var PasswordSecond string
-// 		for _, user := range ValidateEmail {
-// 			PasswordSecond = user.Password
-// 		}
-// 		if err := bcrypt.CompareHashAndPassword([]byte(PasswordSecond), []byte(input.Password)); err != nil {
-// 			w.WriteHeader(http.StatusNotFound)
-// 			fmt.Fprintf(w, "Password not Found")
-// 			return
-// 		}
-// 		jwtKey := os.Getenv("SECRETKEY")
-// 		token, _ := helper.GenerateToken(jwtKey, input.Email)
-// 		item := map[string]string{
-// 			"Email": input.Email,
-// 			"Token": token,
-// 		}
-// 		res, _ := json.Marshal(item)
-// 		w.WriteHeader(http.StatusOK)
-// 		w.Write(res)
-// 		return
-// 		//cara cari password email pakai for range
-// 	} else {
-// 		http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
-// 	}
-// }
 
 func RegisterSeller(w http.ResponseWriter, r *http.Request) {
 	middleware.GetCleanedInput(r)
@@ -267,11 +113,14 @@ func Login(w http.ResponseWriter, r *http.Request) {
 			return
 		}
 		//testing validate role
-		// er := json.Unmarshal([]byte(input.Role), &input)
-		// if err != nil {
-        // fmt.Println(er)
-    	// }
+		// ValidateRole := usermodel.FindRole(&input)
+		// if len(ValidateRole) == 0 {
 
+		// }
+		// var RoleSecond string
+		// for _ ,user := range ValidateRole {
+		// 	RoleSecond = user.Role
+		// }
 
 		ValidateEmail := usermodel.FindEmail(&input)
 		if len(ValidateEmail) == 0 {
@@ -283,7 +132,8 @@ func Login(w http.ResponseWriter, r *http.Request) {
 		for _, user := range ValidateEmail {
 			PasswordSecond = user.Password
 		}
-		//Autentikasi (auth)
+
+		
 		if err := bcrypt.CompareHashAndPassword([]byte(PasswordSecond), []byte(input.Password)); err != nil {
 			w.WriteHeader(http.StatusNotFound)
 			fmt.Fprintf(w, "Password not Found")
@@ -295,9 +145,15 @@ func Login(w http.ResponseWriter, r *http.Request) {
 			http.Error(w, "Failed to generate tokens", http.StatusInternalServerError)
 			return
 		}
+		
+		// if input.Role == "Seller" {
+		// 	input.Role = "Seller"
+		// } else if input.Role == "Customer"{
+		// 	input.Role = "Customer"
+		// }
 		item := map[string]string{
 			"Email": input.Email,
-			"Role": input.Role,
+			"Role": string(input.Role),//User.Role
 			"Token": token,
 		}
 		res, err := json.Marshal(item)
@@ -307,6 +163,10 @@ func Login(w http.ResponseWriter, r *http.Request) {
 		}
 		w.WriteHeader(http.StatusOK)
 		w.Write(res)
+		// debug
+		// fmt.Fprintf(w, input.Email)
+		// fmt.Fprintf(w, input.Role)
+		// fmt.Fprintf(w, token)
 		return
 
 	} else {
@@ -368,7 +228,7 @@ func UpdateSeller(w http.ResponseWriter, r *http.Request) {
 			http.Error(w, "Failed convert to Json", http.StatusInternalServerError)
 			return
 		}
-
+		//hashing
 		hashedPassword, _ := bcrypt.GenerateFromPassword([]byte(input.Password), bcrypt.DefaultCost)
 		Password := string(hashedPassword)
 
@@ -456,7 +316,7 @@ func RefreshToken(w http.ResponseWriter, r *http.Request) {
 	email := claims["email"].(string)//di conversi menjadi string
 	role := claims["role"].(string)
 
-	newToken, err := helper.GenerateToken(os.Getenv("SECRETKEY"), email, role)
+	newToken, err := helper.GenerateToken(os.Getenv("SECRETKEY"), email, role)//tambahkan role
 	if err != nil {
 		http.Error(w, "Failed to generate new token", http.StatusInternalServerError)
 		return

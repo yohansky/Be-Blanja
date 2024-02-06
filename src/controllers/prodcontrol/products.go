@@ -80,6 +80,19 @@ func Product(w http.ResponseWriter, r *http.Request) {// GET & PUT & DELETE
 	}
 }
 
+func SelectProducts(w http.ResponseWriter, r *http.Request) {
+		if r.Method == "GET" {
+				res := prodmodels.SelectAll()
+				result, err := json.Marshal(res.Value)
+				if err != nil {
+					http.Error(w, "Failed convert to Json", http.StatusInternalServerError)
+					return
+				}
+				w.Write(result)
+				return
+			}
+}
+
 func Products(w http.ResponseWriter, r *http.Request) {// GET & POST
 	middleware.GetCleanedInput(r)
 	helper.EnableCors(w) //memungkinkan sharing sesama localhost
@@ -94,7 +107,7 @@ func Products(w http.ResponseWriter, r *http.Request) {// GET & POST
 			sort = "ASC"
 		}
 		sortby := r.URL.Query().Get("sortBy")
-		if sort == ""{
+		if sortby == ""{
 			sortby = "name"
 		}
 		sort = sortby + " " + strings.ToLower(sort)
@@ -109,6 +122,7 @@ func Products(w http.ResponseWriter, r *http.Request) {// GET & POST
 			"totalData" : totalData,
 			"totalPage": totalPage,
 		}
+
 		res, err := json.Marshal(result)
 		if err != nil{
 			http.Error(w, "Gagal Konversi Json", http.StatusInternalServerError)
