@@ -5,25 +5,25 @@ Section : BackEnd <br>
 ## Tools
 ```go
 Security :
-[Helmet]: https://github.com/goddtriffin/helmet <br>
-[Cors]: github.com/oxtoacart/bpool <br>
-[Xss]: github.com/utrack/gin-csrf <br>
+[Helmet]: https://github.com/goddtriffin/helmet 
+[Cors]: github.com/oxtoacart/bpool 
+[Xss]: github.com/utrack/gin-csrf 
 
 Live Server :
-[AIR]: https://github.com/cosmtrek/air <br>
+[AIR]: https://github.com/cosmtrek/air 
 
 Error Handling : 
-[Linter]: https://github.com/golangci/golangci-lint <br>
+[Linter]: https://github.com/golangci/golangci-lint 
 
 Migration DB : 
-[Gorm]: https://github.com/jinzhu/gorm <br>
-_ "github.com/jinzhu/gorm/dialects/postgres" <br>
+[Gorm]: https://github.com/jinzhu/gorm 
+_ "github.com/jinzhu/gorm/dialects/postgres" 
 
 ENV : 
-[gotenv]: github.com/subosito/gotenv <br>
+[gotenv]: github.com/subosito/gotenv
 
 Hashing Pass : 
-[bcrypt]: https://www.golang.org/x/crypto/bcrypt <br>
+[bcrypt]: https://www.golang.org/x/crypto/bcrypt 
 
 JWT :
 [JWT]: github.com/dgrijalva/jwt-go
