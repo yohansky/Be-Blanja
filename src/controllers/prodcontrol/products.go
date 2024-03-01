@@ -118,7 +118,7 @@ func Products(w http.ResponseWriter, r *http.Request) {// GET & POST
 			"status": "Berhasil",
 			"data":	respons.Value,
 			"currentPage": page,
-			"limit": limitOld,
+			"limit": limit, //tadinya limitOld
 			"totalData" : totalData,
 			"totalPage": totalPage,
 		}
@@ -189,7 +189,6 @@ func Handle_upload(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	defer file.Close()//file harus ditutup
-
 	ext := filepath.Ext(handler.Filename)
 	ext = strings.ToLower(ext)
 	allowedExts := strings.Split(AllowedExtensions, ",")//pecah pakai method split

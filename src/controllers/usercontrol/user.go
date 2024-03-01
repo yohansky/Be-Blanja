@@ -313,7 +313,7 @@ func RefreshToken(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	email := claims["email"].(string)//di conversi menjadi string
+	email := claims["email"].(string)//di konversi menjadi string
 	role := claims["role"].(string)
 
 	newToken, err := helper.GenerateToken(os.Getenv("SECRETKEY"), email, role)//tambahkan role

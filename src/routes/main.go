@@ -64,7 +64,7 @@ func Router()  {
 
 	//Route Product + Upload + Search
 	http.Handle("/products", helmet.Secure(middleware.JwtMiddleware(http.HandlerFunc(prodcontrol.Products))))//pagination
-	http.Handle("/products", helmet.Secure(middleware.JwtMiddleware(http.HandlerFunc(prodcontrol.SelectProducts)))) 	
+	http.Handle("/selectproducts", helmet.Secure(middleware.JwtMiddleware(http.HandlerFunc(prodcontrol.SelectProducts)))) 	
 	http.Handle("/product/", helmet.Secure(middleware.JwtMiddleware(http.HandlerFunc(prodcontrol.Product))))
 	http.Handle("/product-search/", helmet.Secure(middleware.JwtMiddleware(http.HandlerFunc(prodcontrol.SearchProduct))))
 
